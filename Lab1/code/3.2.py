@@ -8,9 +8,9 @@ from torch.utils.data import DataLoader
 import ipdb
 
 
-class Model(nn.Module):
+class Model_3_2(nn.Module):
     def __init__(self, num_classes):
-        super(Model, self).__init__()
+        super(Model_3_2, self).__init__()
         self.flatten = nn.Flatten()
         self.linear = nn.Linear(28 * 28, num_classes)
 
@@ -20,7 +20,7 @@ class Model(nn.Module):
         return x
 
 
-learning_rate = 5e-3
+learning_rate = 5e-2
 num_epochs = 10
 batch_size = 4096
 num_classes = 10
@@ -29,33 +29,33 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 transform = transforms.Compose(
     [
         transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,)),
+        transforms.Normalize((0.5,), (1.0,)),
     ]
 )
 train_dataset = datasets.FashionMNIST(
-    root="./dataset", train=True, transform=transform, download=True
+    root="../dataset", train=True, transform=transform, download=True
 )
 test_dataset = datasets.FashionMNIST(
-    root="./dataset", train=False, transform=transform, download=True
+    root="../dataset", train=False, transform=transform, download=True
 )
 train_loader = DataLoader(
     dataset=train_dataset,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=4,
+    num_workers=14,
     pin_memory=True,
 )
 test_loader = DataLoader(
     dataset=test_dataset,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=4,
+    num_workers=14,
     pin_memory=True,
 )
 
-model = Model(num_classes).to(device)
+model = Model_3_2(num_classes).to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 for epoch in range(num_epochs):
     total_epoch_loss = 0

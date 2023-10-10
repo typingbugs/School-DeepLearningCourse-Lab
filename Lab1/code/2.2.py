@@ -7,9 +7,9 @@ from tqdm import tqdm
 import ipdb
 
 
-class Model(nn.Module):
+class Model_2_2(nn.Module):
     def __init__(self):
-        super(Model, self).__init__()
+        super(Model_2_2, self).__init__()
         self.linear = nn.Linear(1, 1, dtype=torch.float64)
 
     def forward(self, x):
@@ -38,17 +38,21 @@ class My_Dataset(Dataset):
         return x, y
 
 
-learning_rate = 1e-2
+learning_rate = 5e-2
 num_epochs = 10
 batch_size = 1024
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 dataset = My_Dataset()
 dataloader = DataLoader(
-    dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=5, pin_memory=True
+    dataset=dataset,
+    batch_size=batch_size,
+    shuffle=True,
+    num_workers=14,
+    pin_memory=True,
 )
 
-model = Model().to(device)
+model = Model_2_2().to(device)
 criterion = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 

@@ -27,7 +27,7 @@ class My_CrossEntropyLoss:
 
 class My_optimizer:
     def __init__(self, params: list[torch.Tensor], lr: float):
-        self.params = params
+        self.params = list(params)
         self.lr = lr
 
     def step(self):
@@ -96,7 +96,7 @@ class Model_3_1:
         return self.params
 
 
-learning_rate = 5e-3
+learning_rate = 5e-1
 num_epochs = 10
 batch_size = 4096
 num_classes = 10
@@ -105,27 +105,27 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 transform = transforms.Compose(
     [
         transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,)),
+        transforms.Normalize((0.5,), (1.0,)),
     ]
 )
 train_dataset = datasets.FashionMNIST(
-    root="./dataset", train=True, transform=transform, download=True
+    root="../dataset", train=True, transform=transform, download=True
 )
 test_dataset = datasets.FashionMNIST(
-    root="./dataset", train=False, transform=transform, download=True
+    root="../dataset", train=False, transform=transform, download=True
 )
 train_loader = DataLoader(
     dataset=train_dataset,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=4,
+    num_workers=14,
     pin_memory=True,
 )
 test_loader = DataLoader(
     dataset=test_dataset,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=4,
+    num_workers=14,
     pin_memory=True,
 )
 
@@ -148,7 +148,6 @@ for epoch in range(num_epochs):
         )
 
         outputs = model(images)
-        # ipdb.set_trace()
         loss = criterion(outputs, one_hot_targets)
         total_epoch_loss += loss
 

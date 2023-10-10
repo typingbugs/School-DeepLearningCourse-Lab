@@ -53,7 +53,7 @@ class My_Linear:
         return self.params
 
 
-class Model:
+class Model_2_1:
     def __init__(self):
         self.linear = My_Linear(1, 1)
         self.params = self.linear.params
@@ -102,10 +102,14 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 dataset = My_Dataset()
 dataloader = DataLoader(
-    dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=5, pin_memory=True
+    dataset=dataset,
+    batch_size=batch_size,
+    shuffle=True,
+    num_workers=14,
+    pin_memory=True,
 )
 
-model = Model().to(device)
+model = Model_2_1().to(device)
 criterion = My_BCELoss()
 optimizer = My_optimizer(model.parameters(), lr=learning_rate)
 
