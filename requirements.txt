@@ -1,8 +1,9 @@
-black==23.9.1
-ipdb==0.13.13
-jupyter==1.0.0
-numpy==1.26.0
+black
+ipdb
+jupyter
+numpy
 torch==2.1.0
 torchaudio==2.1.0
 torchvision==0.16.0
-tqdm==4.66.1
+tqdm
+matplotlib
