@@ -106,7 +106,7 @@ class My_optimizer:
 
 
 def train_MNIST_CLS(Model:nn.Module):
-    learning_rate = 5e-2
+    learning_rate = 8e-2
     num_epochs = 10
     batch_size = 512
     num_classes = 10
@@ -139,6 +139,8 @@ def train_MNIST_CLS(Model:nn.Module):
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
     
+    train_loss = list()
+    test_acc = list()
     for epoch in range(num_epochs):
         model.train()
         total_epoch_loss = 0
@@ -182,8 +184,11 @@ def train_MNIST_CLS(Model:nn.Module):
         avg_epoch_acc = total_epoch_acc / len(test_mnist_dataset)
         print(
             f"Epoch [{epoch + 1}/{num_epochs}],",
-            f"Train Loss: {total_epoch_loss},",
+            f"Train Loss: {total_epoch_loss:.10f},",
             f"Used Time: {train_time * 1000:.3f}ms,",
             f"Test Acc: {avg_epoch_acc * 100:.3f}%,",
             f"Used Time: {test_time * 1000:.3f}ms",
         )
+        train_loss.append(total_epoch_loss)
+        test_acc.append(avg_epoch_acc * 100)
+    return train_loss, test_acc

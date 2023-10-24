@@ -130,7 +130,7 @@ if __name__ == "__main__":
         avg_epoch_acc = total_epoch_acc / len(test_binarycls_dataset)
         print(
             f"Epoch [{epoch + 1}/{num_epochs}],",
-            f"Train Loss: {total_epoch_loss},",
+            f"Train Loss: {total_epoch_loss:.10f},",
             f"Used Time: {train_time * 1000:.3f}ms,",
             f"Test Acc: {avg_epoch_acc * 100:.3f}%,",
             f"Used Time: {test_time * 1000:.3f}ms",
