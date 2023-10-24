@@ -1,7 +1,7 @@
 import time
 import numpy as np
 import torch
-from torch.nn.functional import one_hot, softmax
+from torch.nn.functional import *
 from torch.utils.data import Dataset, DataLoader
 from torch import nn
 from torchvision import datasets, transforms
