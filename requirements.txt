@@ -3,7 +3,6 @@ ipdb
 jupyter
 numpy
 torch
-torchaudio
 torchvision
 tqdm
 matplotlib
