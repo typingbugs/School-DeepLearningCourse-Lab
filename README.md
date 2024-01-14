@@ -26,6 +26,16 @@ pip安装python依赖包：
 pip install -r requirements.txt
 ```
 
+获取数据集（实验四和实验五需要）：
+
+链接：https://pan.baidu.com/s/19KW0Pzx-0uQZezTXWkqgkw?pwd=yapa 
+提取码：yapa
+
+解压命令：
+```shell
+tar -xzvf datasets.tar.gz
+```
+
 如果对你有帮助，麻烦点个**star** ~
 
 Enjoy ~
