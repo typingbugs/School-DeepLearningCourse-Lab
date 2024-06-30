@@ -28,8 +28,8 @@ pip install -r requirements.txt
 
 获取数据集（实验四和实验五需要）：
 
-链接：https://pan.baidu.com/s/19KW0Pzx-0uQZezTXWkqgkw?pwd=yapa 
-提取码：yapa
+链接：https://pan.baidu.com/s/13pELZTtqVu11Q1GhSFZUdg?pwd=8024 
+提取码：8024
 
 解压命令：
 ```shell
